@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./style/App.css";
+import Todo from "./components/Todo";
+import { useState } from "react";
 
 function App() {
+  const [textTodo, setTextTodo] = useState<string>("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <>
+      <h2>Todo List</h2>
+      <div className="content">
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          안녕하세요ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </div>
+      <input
+        type={"text"}
+        placeholder={"추가할 할 일을 입력해주세요"}
+        value={textTodo}
+        onChange={(e) => {
+          setTextTodo(e.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          let a: boolean = window.confirm(
+            textTodo + "를 할 일에 추가하시겠습니까?"
+          );
+        }}
+      >
+        추가
+      </button>
+      <Todo></Todo>
+    </>
   );
 }
 
