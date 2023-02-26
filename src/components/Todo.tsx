@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import {
-  Tododiv,
-  TodoContentGray,
-  TodoDel,
-  TodoContent,
-} from "../style/TodoStyle";
+import { Dispatch, SetStateAction, useState } from "react";
+import { Tododiv, TodoDel, TodoContent } from "../style/TodoStyle";
 
-const Todo = () => {
+interface ITodoContent {
+  context: string;
+  index: number;
+  entireTodoContext: string[];
+  setEntireTodoContext: Dispatch<SetStateAction<string[]>>;
+}
+
+const Todo = (props: ITodoContent) => {
   const [check, setCheck] = useState<boolean>(false);
   return (
     <>
@@ -16,15 +18,26 @@ const Todo = () => {
           checked={check}
           onChange={() => {
             setCheck(!check);
-            console.log(check);
           }}
         />
-        {check ? (
-          <TodoContentGray>Content</TodoContentGray>
-        ) : (
-          <TodoContent>Content</TodoContent>
-        )}
-        <TodoDel>✕</TodoDel>
+        <TodoContent isCheck={check}>{props.context}</TodoContent>
+        <TodoDel
+          isDone={check}
+          onClick={() => {
+            let DeleteCheck: boolean = window.confirm(
+              "'" + props.context + "'을(를) 삭제하실건가요?"
+            );
+            if (DeleteCheck) {
+              props.entireTodoContext.splice(props.index, 1);
+              let array: string[] = [...props.entireTodoContext];
+              props.setEntireTodoContext([...array]);
+              const JSONConversion: string = JSON.stringify(array);
+              localStorage.setItem("todoContext", JSONConversion);
+            }
+          }}
+        >
+          ✕
+        </TodoDel>
       </Tododiv>
     </>
   );
