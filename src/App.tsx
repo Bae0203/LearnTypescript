@@ -1,5 +1,5 @@
 import Todo from "./components/Todo";
-import { useEffect, useState } from "react";
+import { useEffect, useState, KeyboardEvent } from "react";
 
 function App() {
   const [textTodo, setTextTodo] = useState<string>("");
@@ -11,6 +11,29 @@ function App() {
       setTodoContext([...LocalStorageTodoContext]);
     }
   }, []);
+
+  const ADDTodohandler = () => {
+    if (textTodo === "") {
+      alert("내용을 제대로 입력해주세요");
+    } else {
+      let TodoADDCheck: boolean = window.confirm(
+        textTodo + "를 할 일에 추가하시겠습니까?"
+      );
+      if (TodoADDCheck) {
+        let todoValueADD: string[] = [...todoContext, textTodo];
+        setTodoContext([...todoValueADD]);
+        const JSONConversion: string = JSON.stringify(todoValueADD);
+        localStorage.setItem("todoContext", JSONConversion);
+        setTextTodo("");
+      }
+    }
+  };
+  const Enterhandler = (KeyDownChecker: KeyboardEvent<HTMLInputElement>) => {
+    if (KeyDownChecker.key === "Enter") {
+      ADDTodohandler();
+    }
+  };
+
   return (
     <>
       <h2>Todo List</h2>
@@ -21,23 +44,9 @@ function App() {
         onChange={(e) => {
           setTextTodo(e.target.value);
         }}
+        onKeyDown={Enterhandler}
       />
-      <button
-        onClick={() => {
-          let TodoADDCheck: boolean = window.confirm(
-            textTodo + "를 할 일에 추가하시겠습니까?"
-          );
-          if (TodoADDCheck) {
-            let todoValueADD: string[] = [...todoContext, textTodo];
-            setTodoContext([...todoValueADD]);
-            const JSONConversion: string = JSON.stringify(todoValueADD);
-            localStorage.setItem("todoContext", JSONConversion);
-            setTextTodo("");
-          }
-        }}
-      >
-        추가
-      </button>
+      <button onClick={ADDTodohandler}>추가</button>
       {todoContext.map((value: string, index: number) => {
         return (
           <Todo
