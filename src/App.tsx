@@ -1,5 +1,6 @@
 import Todo from "./components/Todo";
 import { useEffect, useState, KeyboardEvent } from "react";
+import * as S from "./style/AppStyled";
 
 function App() {
   const [textTodo, setTextTodo] = useState<string>("");
@@ -36,8 +37,8 @@ function App() {
 
   return (
     <>
-      <h2>Todo List</h2>
-      <input
+      <S.Title>Todo List</S.Title>
+      <S.TodoInput
         type={"text"}
         placeholder={"추가할 할 일을 입력해주세요"}
         value={textTodo}
@@ -46,7 +47,7 @@ function App() {
         }}
         onKeyDown={Enterhandler}
       />
-      <button onClick={ADDTodohandler}>추가</button>
+      <S.TodoButton onClick={ADDTodohandler}>추가</S.TodoButton>
       {todoContext.map((value: string, index: number) => {
         return (
           <Todo
