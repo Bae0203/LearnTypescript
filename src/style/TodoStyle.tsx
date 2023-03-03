@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const Tododiv = styled.div`
+  margin: 1.5rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 interface ITodoContent {
@@ -9,7 +12,7 @@ interface ITodoContent {
 }
 
 export const TodoContent = styled.p`
-  margin-left: 0.3rem;
+  margin: 0rem 0.5rem;
   font-size: 1.2rem;
   color: ${(props: ITodoContent) => (props.isCheck ? "gray" : "black")};
   text-decoration: ${(props: ITodoContent) =>
@@ -21,11 +24,10 @@ interface ITodoDelBtn {
 }
 
 export const TodoDel = styled.p`
-  font-weight: bold;
-  color: ${(props: ITodoDelBtn) => (props.isDone ? "red" : "black")};
+  color: ${(props: ITodoDelBtn) => (props.isDone ? "rgb(230,0,0)" : "black")};
   font-size: 1.2rem;
-  margin-left: 10px;
   &:hover {
-    color: ${(props: ITodoDelBtn) => (props.isDone ? "rgb(205,0,0)" : "gray")};
+    color: ${(props: ITodoDelBtn) =>
+      props.isDone ? "rgb(255,100,0)" : "gray"};
   }
 `;
