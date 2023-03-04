@@ -2,6 +2,7 @@ import Todo from "./components/Todo";
 import Location from "./components/Location";
 import { useEffect, useState, KeyboardEvent } from "react";
 import * as S from "./style/AppStyled";
+import UploadImage from "./components/UploadImage";
 
 function App() {
   const [textTodo, setTextTodo] = useState<string>("");
@@ -79,6 +80,8 @@ function App() {
       </S.TodoArea>
 
       <Location></Location>
+
+      <UploadImage></UploadImage>
     </>
   );
 }
