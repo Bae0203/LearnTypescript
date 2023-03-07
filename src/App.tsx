@@ -3,8 +3,10 @@ import Location from "./components/Location";
 import { useEffect, useState, KeyboardEvent } from "react";
 import * as S from "./style/AppStyled";
 import UploadImage from "./components/UploadImage";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const Navigate = useNavigate();
   const [textTodo, setTextTodo] = useState<string>("");
   const [todoContext, setTodoContext] = useState<string[]>([]);
   useEffect(() => {
@@ -81,7 +83,7 @@ function App() {
 
       <Location></Location>
 
-      <UploadImage></UploadImage>
+      <button onClick={() => Navigate("/image")}>Test Image로 가기</button>
 
       <div></div>
     </>
