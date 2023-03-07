@@ -2,7 +2,6 @@ import Todo from "./components/Todo";
 import Location from "./components/Location";
 import { useEffect, useState, KeyboardEvent } from "react";
 import * as S from "./style/AppStyled";
-import UploadImage from "./components/UploadImage";
 import { useNavigate } from "react-router-dom";
 
 function App() {
