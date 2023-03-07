@@ -82,6 +82,8 @@ function App() {
       <Location></Location>
 
       <UploadImage></UploadImage>
+
+      <div></div>
     </>
   );
 }
