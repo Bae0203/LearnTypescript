@@ -83,6 +83,7 @@ function App() {
       <Location></Location>
 
       <button onClick={() => Navigate("/image")}>Test Image로 가기</button>
+      <button onClick={() => Navigate("/input")}>Test Input로 가기</button>
 
       <div></div>
     </>
