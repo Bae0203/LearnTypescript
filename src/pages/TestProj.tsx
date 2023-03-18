@@ -24,7 +24,7 @@ const TestProj = () => {
   };
 
   return (
-    <>
+    <S.EntireWrapTag>
       <div>input 테스트용</div>
       <S.InputWrap>
         <S.InputTitleWrap>
@@ -59,7 +59,7 @@ const TestProj = () => {
       <p>
         <S.ButtonStyle>제출하기</S.ButtonStyle>
       </p>
-    </>
+    </S.EntireWrapTag>
   );
 };
 

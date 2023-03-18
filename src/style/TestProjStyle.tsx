@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const InputWrap = styled.nav`
-  margin-left: 38%;
+  margin-bottom: 1rem;
 `;
 
 export const InputTitleWrap = styled.nav`
@@ -49,4 +49,9 @@ export const ButtonStyle = styled.button`
   &:active {
     background-color: rgba(21, 86, 247);
   }
+  margin-top: 3rem;
+`;
+
+export const EntireWrapTag = styled.div`
+  margin-left: 38%;
 `;
