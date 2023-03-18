@@ -1,6 +1,18 @@
 import styled from "styled-components";
 import FileImage from "../style/asset/file.svg";
 
+interface IErrorProps {
+  isError: boolean | null;
+}
+
+export const ErrorAlert = styled.p`
+  margin: 0.4rem;
+  color: #ff4f4f;
+  font-size: 0.7rem;
+  opacity: ${(props: IErrorProps) =>
+    props.isError == null ? "0" : props.isError ? "1" : "0"};
+`;
+
 export const InputWrap = styled.nav`
   margin-bottom: 1rem;
 `;
@@ -39,6 +51,48 @@ export const InputStyle = styled.input`
   }
   &:active{
     border 1px solid #1556F7;
+  }
+`;
+
+interface IUrlProps {
+  isUrl: boolean | null;
+}
+
+export const UrlInputStyle = styled.input`
+  padding: 0.8rem 0.5rem;
+  font-size: 0.8rem;
+  width: 22.125rem;
+  box-shadow: none;
+  border: ${(props: IUrlProps) =>
+    props.isUrl == null
+      ? "1px solid #c0c0c0"
+      : props.isUrl
+      ? "1px solid #c0c0c0"
+      : "1px solid #FF4F4F"};
+  border-radius: 5px;
+  color: #666;
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: #c0c0c0;
+  }
+  :-ms-input-placeholder {
+    color: #c0c0c0;
+  }
+  &:hover {
+    border: ${(props: IUrlProps) =>
+      props.isUrl == null
+        ? "1px solid #a9c0f6"
+        : props.isUrl
+        ? "1px solid #a9c0f6"
+        : "1px solid #FF4F4F"};
+  }
+  &:active {
+    border: ${(props: IUrlProps) =>
+      props.isUrl == null
+        ? "1px solid #1556F7"
+        : props.isUrl
+        ? "1px solid #1556F7"
+        : "1px solid #FF4F4F"};
   }
 `;
 
