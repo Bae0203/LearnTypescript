@@ -10,7 +10,7 @@ export const ErrorAlert = styled.p`
   color: #ff4f4f;
   font-size: 0.7rem;
   opacity: ${(props: IErrorProps) =>
-    props.isError == null ? "0" : props.isError ? "1" : "0"};
+    props.isError == null ? "0" : !props.isError ? "1" : "0"};
 `;
 
 export const InputWrap = styled.nav`
@@ -32,41 +32,15 @@ export const EssentialContent = styled.p`
 `;
 
 export const InputStyle = styled.input`
-  padding: 0.8rem 0.5rem;
+  display: flex;
+  padding: 0.8rem;
   font-size: 0.8rem;
   width: 22.125rem;
   box-shadow: none;
-  border: 1px solid #c0c0c0;
-  border-radius: 5px;
-  color: #666;
-  ::placeholder,
-  ::-webkit-input-placeholder {
-    color: #c0c0c0;
-  }
-  :-ms-input-placeholder {
-    color: #c0c0c0;
-  }
-  &:hover {
-    border: 1px solid #a9c0f6;
-  }
-  &:active{
-    border 1px solid #1556F7;
-  }
-`;
-
-interface IUrlProps {
-  isUrl: boolean | null;
-}
-
-export const UrlInputStyle = styled.input`
-  padding: 0.8rem 0.5rem;
-  font-size: 0.8rem;
-  width: 22.125rem;
-  box-shadow: none;
-  border: ${(props: IUrlProps) =>
-    props.isUrl == null
+  border: ${(props: IErrorProps) =>
+    props.isError == null
       ? "1px solid #c0c0c0"
-      : props.isUrl
+      : props.isError
       ? "1px solid #c0c0c0"
       : "1px solid #FF4F4F"};
   border-radius: 5px;
@@ -79,18 +53,18 @@ export const UrlInputStyle = styled.input`
     color: #c0c0c0;
   }
   &:hover {
-    border: ${(props: IUrlProps) =>
-      props.isUrl == null
+    border: ${(props: IErrorProps) =>
+      props.isError == null
         ? "1px solid #a9c0f6"
-        : props.isUrl
+        : !props.isError
         ? "1px solid #a9c0f6"
         : "1px solid #FF4F4F"};
   }
   &:active {
-    border: ${(props: IUrlProps) =>
-      props.isUrl == null
+    border: ${(props: IErrorProps) =>
+      props.isError == null
         ? "1px solid #1556F7"
-        : props.isUrl
+        : !props.isError
         ? "1px solid #1556F7"
         : "1px solid #FF4F4F"};
   }
@@ -107,14 +81,29 @@ export const FileInputLabel = styled.label`
   font-size: 0.8rem;
   width: 22.125rem;
   box-shadow: none;
-  border: 1px solid #c0c0c0;
+  border: ${(props: IErrorProps) =>
+    props.isError == null
+      ? "1px solid #c0c0c0"
+      : props.isError
+      ? "1px solid #c0c0c0"
+      : "1px solid #FF4F4F"};
   border-radius: 5px;
   color: #c0c0c0;
   &:hover {
-    border: 1px solid #a9c0f6;
+    border: ${(props: IErrorProps) =>
+      props.isError == null
+        ? "1px solid #a9c0f6"
+        : props.isError
+        ? "1px solid #a9c0f6"
+        : "1px solid #FF4F4F"};
   }
-  &:active{
-    border 1px solid #1556F7;
+  &:active {
+    border: ${(props: IErrorProps) =>
+      props.isError == null
+        ? "1px solid #1556F7"
+        : props.isError
+        ? "1px solid #1556F7"
+        : "1px solid #FF4F4F"};
   }
 `;
 

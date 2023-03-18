@@ -27,6 +27,24 @@ const TestProj = () => {
   };
 
   useEffect(() => {
+    if (value1Error != null) {
+      if (value1.length < 3) {
+        setValue1Error(false);
+      } else {
+        setValue1Error(true);
+      }
+    }
+
+    if (value2Error != null) {
+      if (value2) {
+        console.log("dddd");
+
+        setValue2Error(false);
+      } else {
+        setValue2Error(true);
+      }
+    }
+
     if (value3 !== "") {
       if (Link.test(value3)) {
         setIsUrl(true);
@@ -34,7 +52,7 @@ const TestProj = () => {
         setIsUrl(false);
       }
     }
-  }, [value3]);
+  }, [value1, value2, value3]);
 
   return (
     <S.EntireWrapTag>
@@ -49,18 +67,21 @@ const TestProj = () => {
           value={value1}
           onChange={(e) => setValue1(e.target.value)}
           placeholder="정보를 입력해주세요."
+          onClick={() => setValue1Error(false)}
+          isError={value1Error}
         />
-        <S.ErrorAlert isError={value1Error}>애러 경고창입니다.</S.ErrorAlert>
+        <S.ErrorAlert isError={value1Error}>필수 입력 항목입니다.</S.ErrorAlert>
       </S.InputWrap>
       <S.InputWrap>
         <S.InputTitleWrap>
           <p>file input</p>
           <S.EssentialContent>*</S.EssentialContent>
         </S.InputTitleWrap>
-        <S.FileInputLabel>
+        <S.FileInputLabel isError={value2Error}>
           <S.FileInputStyle
             type="file"
             onChange={(e) => OnChangeFileHandler(e)}
+            onClick={() => setValue2Error(false)}
           />
           <S.FileImageStyle src={FileImage} alt="" />
           pdf형식을 권장합니다.
@@ -71,14 +92,14 @@ const TestProj = () => {
         <S.InputTitleWrap>
           <p>링크 input</p>
         </S.InputTitleWrap>
-        <S.UrlInputStyle
+        <S.InputStyle
           type="url"
           value={value3}
           onChange={(e) => setValue3(e.target.value)}
           placeholder="https://"
-          isUrl={isUrl}
+          isError={isUrl}
         />
-        <S.ErrorAlert isError={!isUrl}>정확한 url을 입력해주세요.</S.ErrorAlert>
+        <S.ErrorAlert isError={isUrl}>정확한 url을 입력해주세요.</S.ErrorAlert>
       </S.InputWrap>
       <p>
         <S.ButtonStyle>제출하기</S.ButtonStyle>
