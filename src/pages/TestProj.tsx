@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import * as S from "../style/TestProjStyle";
-
+import FileImage from "../style/asset/file.svg";
 const TestProj = () => {
   const Link =
     /(http[s]?|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}/;
@@ -43,7 +43,14 @@ const TestProj = () => {
           <p>file input</p>
           <S.EssentialContent>*</S.EssentialContent>
         </S.InputTitleWrap>
-        <S.InputStyle type="file" onChange={(e) => OnChangeFileHandler(e)} />
+        <S.FileInputLabel>
+          <S.FileInputStyle
+            type="file"
+            onChange={(e) => OnChangeFileHandler(e)}
+          />
+          <S.FileImageStyle src={FileImage} alt="" />
+          pdf형식을 권장합니다.
+        </S.FileInputLabel>
       </S.InputWrap>
       <S.InputWrap>
         <S.InputTitleWrap>
