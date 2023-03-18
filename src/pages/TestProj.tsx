@@ -9,6 +9,7 @@ const TestProj = () => {
   const [value1Error, setValue1Error] = useState<boolean | null>(null);
   const [value2, setValue2] = useState<string | null>(null);
   const [value2Error, setValue2Error] = useState<boolean | null>(null);
+  const [fileName, setFileName] = useState<string | null>(null);
   const [value3, setValue3] = useState<string>("");
   const [isUrl, setIsUrl] = useState<boolean | null>(null);
 
@@ -17,9 +18,10 @@ const TestProj = () => {
     const reader = new FileReader();
     if (file) {
       const fileResource = file[0];
-
+      setFileName(fileResource.name);
       reader.onload = () => {
         const value = URL.createObjectURL(fileResource);
+
         setValue2(value);
       };
       reader.readAsDataURL(fileResource);
@@ -28,7 +30,7 @@ const TestProj = () => {
 
   useEffect(() => {
     if (value1Error != null) {
-      if (value1.length < 3) {
+      if (value1 === "") {
         setValue1Error(false);
       } else {
         setValue1Error(true);
@@ -37,8 +39,6 @@ const TestProj = () => {
 
     if (value2Error != null) {
       if (value2) {
-        console.log("dddd");
-
         setValue2Error(false);
       } else {
         setValue2Error(true);
@@ -67,7 +67,9 @@ const TestProj = () => {
           value={value1}
           onChange={(e) => setValue1(e.target.value)}
           placeholder="정보를 입력해주세요."
-          onClick={() => setValue1Error(false)}
+          onClick={() =>
+            value1 === "" ? setValue1Error(false) : setValue1Error(true)
+          }
           isError={value1Error}
         />
         <S.ErrorAlert isError={value1Error}>필수 입력 항목입니다.</S.ErrorAlert>
@@ -81,12 +83,18 @@ const TestProj = () => {
           <S.FileInputStyle
             type="file"
             onChange={(e) => OnChangeFileHandler(e)}
-            onClick={() => setValue2Error(false)}
+            onClick={() =>
+              value2 === "" ? setValue2Error(false) : setValue2Error(true)
+            }
           />
           <S.FileImageStyle src={FileImage} alt="" />
-          pdf형식을 권장합니다.
+          <S.FileInputContext>
+            {fileName == null ? "pdf형식을 권장합니다." : fileName}
+          </S.FileInputContext>
         </S.FileInputLabel>
-        <S.ErrorAlert isError={value2Error}>애러 경고창입니다.</S.ErrorAlert>
+        <S.ErrorAlert isError={!value2Error}>
+          필수 입력 항목입니다.
+        </S.ErrorAlert>
       </S.InputWrap>
       <S.InputWrap>
         <S.InputTitleWrap>

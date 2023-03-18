@@ -56,7 +56,7 @@ export const InputStyle = styled.input`
     border: ${(props: IErrorProps) =>
       props.isError == null
         ? "1px solid #a9c0f6"
-        : !props.isError
+        : props.isError
         ? "1px solid #a9c0f6"
         : "1px solid #FF4F4F"};
   }
@@ -64,7 +64,7 @@ export const InputStyle = styled.input`
     border: ${(props: IErrorProps) =>
       props.isError == null
         ? "1px solid #1556F7"
-        : !props.isError
+        : props.isError
         ? "1px solid #1556F7"
         : "1px solid #FF4F4F"};
   }
@@ -73,6 +73,12 @@ export const InputStyle = styled.input`
 export const FileInputStyle = styled.input`
   position: absolute;
   opacity: 0;
+`;
+
+export const FileInputContext = styled.p`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const FileInputLabel = styled.label`
@@ -84,7 +90,7 @@ export const FileInputLabel = styled.label`
   border: ${(props: IErrorProps) =>
     props.isError == null
       ? "1px solid #c0c0c0"
-      : props.isError
+      : !props.isError
       ? "1px solid #c0c0c0"
       : "1px solid #FF4F4F"};
   border-radius: 5px;
@@ -93,7 +99,7 @@ export const FileInputLabel = styled.label`
     border: ${(props: IErrorProps) =>
       props.isError == null
         ? "1px solid #a9c0f6"
-        : props.isError
+        : !props.isError
         ? "1px solid #a9c0f6"
         : "1px solid #FF4F4F"};
   }
@@ -101,7 +107,7 @@ export const FileInputLabel = styled.label`
     border: ${(props: IErrorProps) =>
       props.isError == null
         ? "1px solid #1556F7"
-        : props.isError
+        : !props.isError
         ? "1px solid #1556F7"
         : "1px solid #FF4F4F"};
   }
