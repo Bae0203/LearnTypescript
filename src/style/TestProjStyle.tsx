@@ -14,7 +14,7 @@ export const ErrorAlert = styled.p`
 `;
 
 export const InputWrap = styled.nav`
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const InputTitleWrap = styled.nav`
